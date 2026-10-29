@@ -1,8 +1,9 @@
-from seat_agent import receive_message
 from fastapi.testclient import TestClient
+
+import rebooking_agent
 import seat_agent
 from rebooking_agent import send_message
-import rebooking_agent
+from seat_agent import receive_message
 
 
 def test_booking_completes():

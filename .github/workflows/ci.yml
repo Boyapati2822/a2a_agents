@@ -15,15 +15,15 @@ jobs:
           python-version: "3.12"
 
       - name: Install packages
-        run: pip install -r requirements.txt httpx pytest ruff
+        run: pip install -r requirements.txt httpx pytest ruff==0.17.3
 
       - name: Lint
-        run: ruff check
+        run: make lint
 
       - name: Format check
-        run: ruff format --check .
+        run: make format-check
 
       - name: Tests
-        run: pytest -v
+        run: make test
 
 

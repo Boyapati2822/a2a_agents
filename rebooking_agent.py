@@ -1,6 +1,6 @@
-import httpx
 import time
 
+import httpx
 
 failed_calls = 0
 BREAKER_LIMIT = 3
