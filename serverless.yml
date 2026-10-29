@@ -1,0 +1,32 @@
+service: a2a-agents
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.12
+  region: us-east-1
+  environment:
+    AGENT_URL: !Sub "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com"
+
+functions:
+  seatAgent:
+    handler: seat_agent.handler
+    events:
+      - httpApi: '*'
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    pythonBin: python3
+    pipCmdExtraArgs:
+      - '--platform=manylinux2014_x86_64'
+      - '--only-binary=:all:'
+      - '--python-version=3.12'
+
+package:
+  patterns:
+    - '!**'
+    - 'seat_agent.py'
+
